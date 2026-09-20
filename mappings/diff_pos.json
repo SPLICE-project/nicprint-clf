@@ -1,0 +1,22 @@
+{
+  "all_brostrend_pos1": "RTL",
+  "all_brostrend_pos2": "RTL",
+  "all_brostrend_pos3": "RTL",
+  "all_brostrend_pos4": "RTL",
+  "all_brostrend_pos5": "RTL",
+  "all_mac_pos1": "BCM",
+  "all_mac_pos2": "BCM",
+  "all_mac_pos3": "BCM",
+  "all_mac_pos4": "BCM",
+  "all_mac_pos5": "BCM",
+  "all_moto_pos1": "MTK",
+  "all_moto_pos2": "MTK",
+  "all_moto_pos3": "MTK",
+  "all_moto_pos4": "MTK",
+  "all_moto_pos5": "MTK",
+  "all_rog_pos1": "Intel",
+  "all_rog_pos2": "Intel",
+  "all_rog_pos3": "Intel",
+  "all_rog_pos4": "Intel",
+  "all_rog_pos5": "Intel"
+}
