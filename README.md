@@ -83,6 +83,8 @@ The **E1** experiments are meant to reproduce the paper's main evaluations with 
 
     Pull the pre-built version:
     ```bash
+    docker pull ghcr.io/splice-project/nicprint:1.0
+    docker tag ghcr.io/splice-project/nicprint:1.0 nicprint:1.0
     ```
 
     **OR** build from source:
