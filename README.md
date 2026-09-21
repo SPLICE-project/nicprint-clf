@@ -81,7 +81,7 @@ The **E1** experiments are meant to reproduce the paper's main evaluations with 
 
 2. Get NICPrint's Docker container:
 
-    Pull the pre-built version:
+    Pull the pre-built version (published for `arm64` and `amd64`):
     ```bash
     docker pull ghcr.io/splice-project/nicprint:1.0
     docker tag ghcr.io/splice-project/nicprint:1.0 nicprint:1.0
@@ -205,9 +205,9 @@ The per-class and per-position F1/Recall/Accuracy for the chipset and manufactur
 This is the end of **E1**; make sure to `exit` the Docker container.
 
 ## E2 [30 human-minutes + 0.5 compute-hour (P) OR 6.0 compute-hour (R)]
-The **E2** experiments are meant to reproduce the paper's main evaluations with classifiers trained by the evaluator. Note that the differences with respect to the metrics reported in the paper can be larger for this experiment than for [E1](#e1-30-human-minutes--01-compute-hour) since training is a stochastic process and there is no guarantee that evaluators will converge on the same weights as the authors. The relative behavior of the classifiers and the classes that account for most of the errors should match the paper, even where individual position/classifier cells move by several percentage points; in our runs only two-stage chipset accuracy at P2 moved by more than ten.
+The **E2** experiments are meant to reproduce the paper's main evaluations with classifiers trained by the evaluator. Note that the differences with respect to the metrics reported in the paper can be larger for this experiment than for [E1](#e1-30-human-minutes--01-compute-hour) since training is a stochastic process and there is no guarantee that evaluators will converge on the same weights as the authors. The relative behavior of the classifiers and the classes that account for most of the errors should match the paper, even where individual position/classifier cells move by more than ten percentage points.
 
-**Expected Output**: for every E2 experiment, the same qualitative behavior as the corresponding E1 experiment: the same classes dominate the errors, and classifier rankings change only between accuracies within error of one another. Most cells fall inside the 95% CIs that E1 reports; training is stochastic, so a few do not, most notably two-stage chipset accuracy at P2 (in our test runs).
+**Expected Output**: for every E2 experiment, the same qualitative behavior as the corresponding E1 experiment: the same classes dominate the errors, and classifier rankings change only between accuracies within error of one another. Most cells fall inside the 95% CIs that E1 reports; training is stochastic, so a few do not.
 
 ### Preparation
 1. Complete E1 before starting E2.
