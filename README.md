@@ -7,7 +7,7 @@ This repository is the artifact for **"NICPrint: Wi-Fi NIC Identification via Ma
 ## Overview
 NICPrint is composed of different modules (see figure below) scattered across the following repositories:
 * [SPLICE-project/openwifi](https://github.com/SPLICE-project/openwifi/tree/stf_zero_samp): Our fork of [open-sdr/openwifi](https://github.com/open-sdr/openwifi), which contains the drivers (compiled and source code), byte-crafting programs (compiled and source code), and scripts to operate the Frame Injector, ACK Receptor, and part of the Data-Collection Controller. 
-* [SPLICE-project/openwifi-hw](https://github.com/SPLICE-project/openwifi-hw): Our fork of [open-sdr/openwifi-hw](https://github.com/open-sdr/openwifi-hw), which contains the Xilinx bitstream and Verilog source code for the Frame Injector. Note that currently we only really support the AntSDR E200. 
+* [SPLICE-project/openwifi-hw](https://github.com/SPLICE-project/openwifi-hw/tree/stf_zero_samp): Our fork of [open-sdr/openwifi-hw](https://github.com/open-sdr/openwifi-hw), which contains the Xilinx bitstream and Verilog source code for the Frame Injector. Note that currently we only really support the AntSDR E200. 
 * [SPLICE-project/nicprint-clf](https://github.com/SPLICE-project/nicprint-clf): This repository, which contains the Classification Module and (for the purpose of this evaluation) the part of the Data-Collection Controller in charge of computing the NRAR profiles.
 
 ![NICPrint Block Diagram](./nicprint_diag.png)
