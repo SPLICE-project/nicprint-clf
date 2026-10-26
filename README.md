@@ -1,8 +1,7 @@
 # NICPrint Artifact Evaluation
 
-This repository is the artifact for **"NICPrint: Wi-Fi NIC Identification via Malformed Preambles"**, submitted to NDSS 2027. The code is released under the Apache 2.0 license (see [LICENSE](./LICENSE)) and the datasets under CC-BY-4.0.
-
-*Note*: after we address the reviewers' feedback, this repository, the datasets, and the other repositories listed in the [Overview](#overview) will be packaged into a single Zenodo repository.
+This repository is the artifact for *[NICPrint: Wi-Fi NIC Identification via Malformed Preambles](https://dx.doi.org/10.14722/ndss.2027.230760)*, submitted to NDSS 2027. The code is released under the Apache 2.0 license (see [LICENSE](./LICENSE)), the datasets under CC-BY-4.0 (see [HuggingFace repo](https://huggingface.co/datasets/carguelloM/nicprint-data/blob/main/README.md)), and our OpenWiFi forks under AGPL-3.0 (see links in [Overview](#overview)).
+The version of the artifact submitted for evaluation to the NDSS AEC is at [https://doi.org/10.5281/zenodo.23508520](https://doi.org/10.5281/zenodo.23508520).
 
 ## Overview
 NICPrint is composed of different modules (see figure below) scattered across the following repositories:
@@ -15,9 +14,9 @@ NICPrint is composed of different modules (see figure below) scattered across th
 Since an end-to-end evaluation of NICPrint would require a lot of specialized hardware (e.g., a board supporting OpenWiFi, different Wi-Fi NICs) as well as a significant amount of time to produce enough captures/transmissions, we focus this evaluation on the computation of NRAR profiles from raw pcaps and the training/testing of classifiers with our existing datasets (i.e., the evaluation focuses on part of the Data-Collection Controller and Classification Module only). 
 
 We provide our datasets in the following three formats:
-* `nicprint-raw-data.tar.gz`: raw pcaps as captured by the ACK Receptor (size = 3.6 GB)
-* `nicprint-ir-data.tar.gz`: captures in an "intermediate representation", which shows whether a specific transmission elicited an ACK for a given set of parameters (size = 2.6 MB)
-* `nicprint-proc-data.tar.gz`: pre-computed NRAR profiles (size = 786 KB)
+* `nicprint-raw-data.tar.gz`: raw pcaps as captured by the ACK Receptor (size = 3.5 GB)
+* `nicprint-ir-data.tar.gz`: captures in an "intermediate representation", which shows whether a specific transmission elicited an ACK for a given set of parameters (size = 2.2 MB)
+* `nicprint-proc-data.tar.gz`: pre-computed NRAR profiles (size = 322 KB)
 
 Listed in order from "less processed" to "more processed". 
 
@@ -27,9 +26,8 @@ This entire evaluation can be done with any of the dataset representations (see 
 
 The experiments might not reproduce the paper's numbers exactly: bootstrap resampling is unseeded, and E2 and E3 retrain the classifiers. What should reproduce is the relative behavior of the classifiers, the classes and positions that account for most of the errors, and the accuracy thresholds claimed in the paper.
 
-*Known naming discrepancy*: the E2 scripts label the RPi 4's chipset `BRCM4345C0` in their metrics tables, where the paper uses `BCM4345C0` (Tables II and IV). The label differs only; no result is affected. We will fix it when the artifact is packaged for Zenodo.
+*Known naming discrepancy*: the E2 scripts label the RPi 4's chipset `BRCM4345C0` in their metrics tables, where the paper uses `BCM4345C0` (Tables II and IV). The label differs only; no result is affected. 
 
-*Known extraction warnings*: the tarballs were created on macOS, so GNU tar on Linux prints `Ignoring unknown extended header keyword 'SCHILY.xattr.com.apple.provenance'` (and similar lines for other macOS attributes) while extracting. The warnings are harmless and extraction completes normally. We will regenerate the archives without these attributes when the artifact is packaged for Zenodo.
 
 ### Security and ethics
 
@@ -39,10 +37,10 @@ An end-to-end NICPrint system, built from the openwifi and openwifi-hw forks lin
 
 ## Requirements
 
-Everything NICPrint needs is bundled in the Docker image; Docker Engine is the only software the evaluator has to install.
+Everything this evaluation needs is bundled in the Docker image; Docker Engine is the only software the evaluator has to install.
 
 * **Hardware**: no GPU required, and no NICPrint hardware either: E1-E3 run entirely from the provided datasets, so no AntSDR E200 board, SDR, or Wi-Fi NICs are needed. We tested on an Apple Silicon (M2 Pro) Mac with 10 cores and 16 GB of RAM, and on an x86-64 Fedora 43 machine with 20 cores and 32 GB of RAM.
-* **Software**: Docker Engine (tested with 29.7.2) on macOS 26.6 and Fedora 43 (kernel 7.1.5).
+* **Software**: Docker Engine. We tested with version 29.7.2 on macOS 26.6 and Fedora 43 with kernel 7.1.5.
 * **Disk space**: ~4 GB if you run the experiments from the pre-computed datasets (P), or ~50 GB if you start from the raw pcaps (R).
 
 
@@ -77,7 +75,6 @@ The **E1** experiments are meant to reproduce the paper's main evaluations with 
     cd $HOME/nicprint-eval
     mkdir -p figs-e1 results-e1
     ```
-    *Note*: these download commands will be updated once the datasets move to Zenodo.
 
 2. Get NICPrint's Docker container:
 
@@ -224,7 +221,7 @@ The **E2** experiments are meant to reproduce the paper's main evaluations with 
     cd $HOME/nicprint-eval
     mkdir -p figs-e2 results-e2 proc_data-e2
     ```
-    *Note*: `nicprint-raw-data.tar.gz` is 3.6 GB; depending on your download speed, it may take a long time to fetch. The fetching time is **not** included in the compute-hour estimate.
+    *Note*: `nicprint-raw-data.tar.gz` is 3.5 GB; depending on your download speed, it may take a long time to fetch. The fetching time is **not** included in the compute-hour estimate.
 
     For evaluation with pre-computed profiles (P):
     ```bash
@@ -354,7 +351,7 @@ The **E3** experiments are meant to reproduce the paper's ablation findings, whe
     mkdir -p figs-e3 results-e3 proc_data-e3
     ```
     
-    *Note*: `nicprint-raw-data.tar.gz` is 3.6 GB; depending on your download speed, it may take a long time to fetch. The fetching time is **not** included in the compute-hour estimate. Also note that if you already have `nicprint-raw-data.tar.gz` from E2, then running the command above will skip the download and extraction.
+    *Note*: `nicprint-raw-data.tar.gz` is 3.5 GB; depending on your download speed, it may take a long time to fetch. The fetching time is **not** included in the compute-hour estimate. Also note that if you already have `nicprint-raw-data.tar.gz` from E2, then running the command above will skip the download and extraction.
 
     For evaluation with pre-computed IR (P):
     ```bash
